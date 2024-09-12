@@ -35,7 +35,7 @@ final class Request {
     // URL sorgu parametreleri (örn: ?name=value)
     private let queryParameters: [URLQueryItem]
     
-    //
+    // url kansdafjnsdag
     private var urlString: String {
         var string = Constants.baseUrl
         string += "/"
@@ -55,37 +55,18 @@ final class Request {
         
         return string
     }
+    
+    
     // compactMap - arasına aldığı kodu opsiyonel değerlerden nil olmayanları döndürüp yeni koleksiyon oluşturur
-    /*
-     private var urlString: String {
-             var string = Constants.baseUrl
-             string += "/"
-             string += endpoint.rawValue
-             
-             // Path component'leri ekleme
-             if !pathComponents.isEmpty {
-                 string += "/" + pathComponents.joined(separator: "/")
-             }
-             
-             // Query parametreleri ekleme
-             if !queryParameters.isEmpty {
-                 string += "?" + queryParameters.map { "\($0.name)=\($0.value ?? "")" }.joined(separator: "&")
-             }
-             
-             return string
-         }
-         
-     */
+
     
-    
-    
-    
-    
-    
+
     public var url: URL? {
         return URL(string: urlString)
     }
     
+    public let httpMethod = "GET"
+
     
     // MARK: - Public
     public init(endpoint: Endpoint, pathCompanents: [String]=[], queryParameters: [URLQueryItem]=[]) {
@@ -97,4 +78,9 @@ final class Request {
     // public init - sınıfın kullanılabilir olması ve farklı sınıflardan ya da modullerden kolayca erişim sağlanması
     // private - değişkenlerin yapısını korumak ve dışarıdan değiştirilmemesini sağlamak
     // bu ikili birlikte kullanılır. hem "GÜVENLİ" hem "MODÜLER" bir yapı oluşturmuş oluyoruz
+}
+
+
+extension Request {
+    static let listCharactersRequest = Request(endpoint: .character)
 }
